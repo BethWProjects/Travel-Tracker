@@ -8,5 +8,5 @@ let fetchData = (dataFileName) =>
     })   
     .then(`response => response.${dataFileName}Data`)
     .catch(err => alert('there was an error in providing you the information'))
-
+//comment
 export { fetchData }
