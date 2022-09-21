@@ -1,3 +1,234 @@
 body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  /* background: radial-gradient(circle, rgb(245, 246, 239) 0%, rgb(243, 244, 238) 100%); */
+  background-color: #e5f1f1;
+}
+html, body, .flex-container {
+  height: 100%;
+  margin: 0px;
+}
+
+nav {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  top: 0px;
+  margin: 0;
+  background-color: #2283e5;
+  color: #fff;
+  height: 120px;
+}
+
+.header-title {
+  font-size: 40px;
+  margin: 10px 10px 10px 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: bold;
+  font-style: italic;
+
+}
+
+ul {
+  /* border: 2px solid black; */
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+
+}
+
+a {
+  color: #B0B0B0;
+  text-decoration: none;
+  
+}
+
+a:hover {
+  color: #ff4007;
+}
+
+.share-font {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  margin-top: 4px;
+}
+
+.total-amt{
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.shares { 
+  margin-left: 10px;
+}
+
+li {
+  font-size: 22px;
+  margin: 10px;
+  margin-left: 32px;
+  list-style-type: none;
+  display: flex;
+
+}
+
+.total-amount {
+  font-size: 18px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: 20px;
+}
+
+.logo {
+  width: 170px;
+  height: 80px;
+  object-fit: cover;
+  margin: 0 20px 10px 0;
+  display: flex;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 3%;
+
+}
+
+h1 {
+  margin-left: 20px;
+  font-size: 32px;
+}
+
+.articles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.article {
+  width: 450px;
+  height: 600px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  box-shadow: 0 0 10px grey;
+  position: relative;
+}
+
+button:hover, input:hover, select:hover {
+  cursor: pointer;
+}
+
+img {
+  width: 450px;
+  height: 260px;
+  object-fit: cover;
+  /* margin: 0 0 10px 0; */
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.arrow {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 5px 0 0 5px;
+  padding: 7px;
+  background-color: white;
+  border-radius: 100%;
+}
+
+p { 
+  margin: 0 0 5px 10px;
+}
+
+p.my-trips {
+  font-size: 24px;
+}
+
+p.name {
+  font-size: 20px;
+  margin-top: 3px;
+  margin-bottom: 0;
+}
+
+.links {
+  margin: 15px 15px 5px 10px;
+  background-color: #EDEDED;
+  padding: 10px 10px 15px 5px;
+  color: black;
+  text-decoration: underline;
+}
+
+.podcast {
+  margin: 18px 0 0 10px;
+}
+
+.playlist-name {
+  margin: 1px 0 0 10px;
+}
+
+.attachments {
+  margin: 21px 0 0 10px;
+}
+
+.number {
+  margin: 0 0 21px 10px;
+  font-size: 32px;
+  color: #AD1A00;
+}
+
+.hidden {
+  display: none;
+}
+
+@media screen and (min-width: 320px) and (max-width: 740px) {
+  ul {
+      border: 2px solid black;
+      font-size: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      align-content: flex-start;
+      flex-wrap: nowrap;
+      transition: ease all .15s;
+  }
+
+
+  li {
+      margin: 5px 5px 5px -15px;
+  }
+
+  .total-amount {
+      margin: 5px 0 0 0;
+  }
+
+  .shares {
+      margin-left: -15px;
+  }
+
+  .logo {
+      width: 110px;
+      height: 70px;
+      margin-right: 10px;
+  }
+
+  .article {
+      width: 300px;
+      height: 400px;
+      margin: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      box-shadow: 0 0 10px grey;
+      position: relative;
+  }
 }
