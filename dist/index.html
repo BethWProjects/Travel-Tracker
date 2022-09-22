@@ -11,13 +11,11 @@
 <body>
   <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
   <nav>
-    <header class="header-title">My Travel Tracker</header>
-    <ul>
-        <li class="shares"><img class="share-font" src="" alt=""><a href="#">Shares</a></li>
-        <li class="podcasts"><img class="share-font" src="" alt=""><a href="#">Podcasts</a></li>
-        <li class="tutorials"><img class="share-font" src="" alt=""><a href="#">Cooking Tutorials</a></li>
-        <li class="total-amount"><img class="total-amt" src="" alt=""><p>Total Amount Spent This Year:</p></li>
-    </ul>
+    <p class="header-title">My Travel Tracker</p>
+    <!-- <img class="total-amt" src="./images/plane.svg" alt="airplane logo in mustard yellow"> -->
+    <img class="total-amt" src="./images/plane.svg" alt="airplane logo in mustard yellow">
+    <p class="amt">Total Amount Spent This Year: $$</p>
+  
     <!-- <img src="" class="logo" alt="small logo image"> -->
 </nav>
 <main>
@@ -42,7 +40,7 @@
             <!-- <p class="name"></p>
             <p class="date"></p> -->
             <section class="sleep-calendar-section card" id="sleepCalendarSection">
-              <label for="sleep-calendar">Update My Data: </label>
+              <label for="sleep-calendar" class="select-date">Select A Date: </label>
               <input aria-label="Enter a date for individual data" class="date-input" id="dateInput" min="2019-06-15" max="2022-01-23" type="date" required>
               <button aria-label="show sleep data for date button" class="show-data-btn" id="showSleepButton">Update User Data</button>
               <button aria-label="reset" class="reset-data-btn" id="resetSleepButton">Reset Data</button>
@@ -52,7 +50,7 @@
             <input type="number" id="durationAmt" name="quantity" min="1" max="31">
             <label class="num-travelers" aria-label="enter number of Travelers" for="numTravelers">Select Number of Travelers (1 - 10):</label>
             <input type="number" id="numTravelers" name="quantity" min="1" max="10">
-            <button class="submit-data-btn" id="submitData">Submit New Data</button>
+            <button class="submit-data-btn" id="submitData">Submit Entries</button>
             <section class="pick-data" id="pickDataType">
               <label for="data-type-slection">Select Data Type:</label>
               <select id="select1" name="data-type-selection" class="data-entry-type-selection" required>

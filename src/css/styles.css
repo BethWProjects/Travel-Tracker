@@ -1,6 +1,7 @@
 body {
   /* background: radial-gradient(circle, rgb(245, 246, 239) 0%, rgb(243, 244, 238) 100%); */
-  background-color: #e5f1f1;
+  background-color: rgb(243, 247, 247);
+  /* background-color: #e5f1f1; */
 }
 html, body, .flex-container {
   height: 100%;
@@ -15,7 +16,7 @@ nav {
   top: 0px;
   margin: 0;
   background-color: #0e4f8f;
-  color: rgb(235, 205, 56);
+  color: #ebcd38;
   height: 120px;
 }
 
@@ -39,6 +40,10 @@ ul {
 
 }
 
+p.amt {
+  font-size: 24px;
+}
+
 a {
   color: #B0B0B0;
   text-decoration: none;
@@ -49,38 +54,34 @@ a:hover {
   color: #ff4007;
 }
 
-.share-font {
-  width: 20px;
-  height: 20px;
-  margin-right: 12px;
-  margin-top: 4px;
-}
-
-.total-amt{
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
-}
-
-.shares { 
-  margin-left: 10px;
-}
-
 li {
   font-size: 22px;
   margin: 10px;
   margin-left: 32px;
   list-style-type: none;
   display: flex;
+  align-items: center;
 
 }
 
-.total-amount {
+.amt {
   font-size: 18px;
   position: absolute;
   right: 0;
   top: 0;
-  margin-right: 20px;
+  margin-right: 50px;
+  margin-top: 20px;
+}
+
+.total-amt{
+  width: 20px;
+  height: 20px;
+  margin-right: 400px;
+  margin-top: 24px;
+  display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .logo {
@@ -113,17 +114,59 @@ h1 {
   margin: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   box-shadow: 0 0 10px grey;
   position: relative;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+p.my-trips {
+  font-size: 26px;
+  margin: 10px 0 10px 0;
+  font-weight: bold;
+}
+
+.past, .upcoming, .pending {
+  margin-top: 40px;
+  font-size: 20px;
+}
+
+button {
+  margin: 10px 0 0 0;
+}
+
+label {
+  margin-top: 40px
+}
+
+.num-travelers {
+  margin-top: 10px;
+}
+
+input {
+  margin-top: 5px;
 }
 
 button:hover, input:hover, select:hover {
   cursor: pointer;
 }
 
+.select-date {
+  display: flex;
+  justify-content: center;
+  font-size: 26px;
+  margin: 10px 0 10px 0;
+  font-weight: bold;
+}
+
+
+.pick-data {
+  margin: 40px 0 0 0;
+}
+
 img {
-  width: 450px;
+  width: 100%;
   height: 260px;
   object-fit: cover;
   /* margin: 0 0 10px 0; */
@@ -148,10 +191,6 @@ img {
 
 p { 
   margin: 0 0 5px 10px;
-}
-
-p.my-trips {
-  font-size: 24px;
 }
 
 p.name {
