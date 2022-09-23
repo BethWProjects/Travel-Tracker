@@ -31,38 +31,17 @@ nav {
 
 }
 
-ul {
-  /* border: 2px solid black; */
-  font-size: 20px;
+.input-banner {
   display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-
+  flex-direction: column;
+  align-items: center;
 }
 
 p.amt {
   font-size: 24px;
 }
 
-a {
-  color: #B0B0B0;
-  text-decoration: none;
-  
-}
 
-a:hover {
-  color: #ff4007;
-}
-
-li {
-  font-size: 22px;
-  margin: 10px;
-  margin-left: 32px;
-  list-style-type: none;
-  display: flex;
-  align-items: center;
-
-}
 
 .amt {
   font-size: 18px;
@@ -146,6 +125,14 @@ label {
 
 input {
   margin-top: 5px;
+}
+
+input:valid {
+  border: 2px solid rgb(136, 223, 136);
+}
+
+input:invalid {
+  border: 2px solid rgb(235, 18, 18);
 }
 
 button:hover, input:hover, select:hover {
