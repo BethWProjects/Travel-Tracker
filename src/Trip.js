@@ -7,27 +7,39 @@ class Trip {
 
   getTrip = (travelerId) => this.tripsData.filter((trip) => trip.userID === travelerId);
 
-  getDestinations = (destId) => this.tripsData.filter((trip) => trip.destinationID === destId)
+  //getDestinations = (destId) => this.destinationData.filter((trip) => trip.destinationID === destId)
 
-  getUpcomingTrips = (id) => {
+  getUpcomingTrips = (travelerId) => {
     let todaysDate = new Date().toISOString().slice(0, 10).split('-').join('/')
-    let trips = this.getTrip(id)
+    let trips = this.getTrip(travelerId)
     const upcomingTrips = trips.filter(trip => trip.date > todaysDate)
     return upcomingTrips
   }
 
-  getPastTrips = (id) => {
+  getPastTrips = (travelerId) => {
     let todaysDate = new Date().toISOString().slice(0, 10).split('-').join('/')
-    let trips = this.getTrip(id)
+    let trips = this.getTrip(travelerId)
     const pastTrips = trips.filter(trip => trip.date < todaysDate)
     return pastTrips
   }
 
-  getPendingTrips = (id) => {
-    let trips = this.getTrip(id)
+  getPendingTrips = (travelerId) => {
+    let trips = this.getTrip(travelerId)
     const pendingTrips = trips.filter(trip => trip.status === 'pending')
     return pendingTrips
   }
+
+  getDestinationData = (travelerId) => {
+    let trips = this.getTrip(travelerId)
+    const tripDestinationIDs = trips.map((trip) => trip.destinationID);
+      return this.destinationsData.reduce((acc, destination) => {
+        if (tripDestinationIDs.includes(destination.id)) {
+          acc.push(destination);
+        }
+        return acc
+      }, []);
+  }
+
 
   // getTotalAmountSpentThisYear = (id) => {
   //   let trips = this.getTrip(id)
