@@ -52,7 +52,7 @@ p.amt {
   margin-top: 20px;
 }
 
-.total-amt{
+.plane-logo{
   width: 20px;
   height: 20px;
   margin-right: 400px;
@@ -88,8 +88,8 @@ h1 {
 }
 
 .article {
-  width: 450px;
-  height: 600px;
+  width: 250px;
+  height: 400px;
   margin: 10px;
   display: flex;
   flex-direction: column;
@@ -106,7 +106,7 @@ p.my-trips {
   font-weight: bold;
 }
 
-.past, .upcoming, .pending {
+.all, .upcoming, .pending {
   margin-top: 40px;
   font-size: 20px;
 }

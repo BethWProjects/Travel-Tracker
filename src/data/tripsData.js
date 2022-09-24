@@ -2028,5 +2028,7 @@ const tripsData = [
     duration: 7,
     status: "approved",
     suggestedActivities: [],
-  },
+  }
 ];
+
+export default tripsData
