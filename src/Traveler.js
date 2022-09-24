@@ -9,9 +9,10 @@ travelerName() {
     return this.name;
 }
 
-setTravelerData(session, dataArray, property) {
-    this[dataArray] = session.getAllTravelerData(this.id, property);
-    console.log('session', session)
+
+setTravelerData(booking, dataArray, property) {
+    this[dataArray] = booking.getAllTravelerData(this.id, property);
+    console.log('booking', booking)
     console.log('dataArray', this[dataArray])
 }
 

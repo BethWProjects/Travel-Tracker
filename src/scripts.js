@@ -1,5 +1,5 @@
 import { fetchData } from './apiCalls';
-import Session from './Session.js';
+import Trip from './Trip.js';
 import Traveler from './Traveler.js'
 
 //querySelectors
@@ -7,10 +7,12 @@ let name = document.querySelector('.name');
 let pastTrips = document.querySelector('.pastTrips')
 let articleCards = document.querySelector('.articles')
 let totalCost = document.querySelector('.total-cost')
+let dropdownSelection = document.querySelector('#dropdownSelection')
+let tripButton = document.querySelector('#submitTrip')
 
-let travelerSession;
-let tripSession;
-let destinationSession;
+let travelerTrip;
+let tripTrip;
+let destinationTrip;
 let randomTraveler;
 
     Promise.all([fetchData("travelers"),fetchData("trips"),fetchData("destinations"),])
@@ -20,20 +22,25 @@ let randomTraveler;
   
 
   function setData(data) {
-    travelerSession = new Session(data[0].travelers);
-    tripSession = new Session(data[1].trips);
-    destinationSession = new Session(data[2].destinations);
-    randomTraveler = getRandomTraveler(travelerSession.data);
-    randomTraveler.setTravelerData(tripSession, 'trips', 'userID');
-    randomTraveler.setDestinationData(destinationSession);
+    travelerTrip = new Trip(data[0].travelers);
+    tripTrip = new Trip(data[1].trips);
+    destinationTrip = new Trip(data[2].destinations);
+    randomTraveler = getRandomTraveler(travelerTrip.data);
+    randomTraveler.setTravelerData(tripTrip, 'trips', 'userID');
+    randomTraveler.setDestinationData(destinationTrip);
     //console.log(randomTraveler.destinations.map(dest => dest.estimatedLodgingCostPerDay))
     console.log(randomTraveler)
     displayData()
   }
 
-  function getRandomTraveler(users) {
-    const randomIndex = Math.floor(Math.random() * users.length);
-    const randomTravelerData = travelerSession.getAllTravelerData(randomIndex, 'id');
+  //eventListeners
+  //tripButton.addEventListener('click', verifyInput)
+  tripButton.addEventListener('click', retrieveTripData)
+ 
+
+  function getRandomTraveler() {
+    const travelerId = Math.floor(Math.random() * 49) + 1;
+    const randomTravelerData = travelerTrip.getAllTravelerData(travelerId, 'id');
     return new Traveler(randomTravelerData[0]);
   }
   
@@ -42,6 +49,7 @@ let randomTraveler;
     displayUserDestinations();
     randomTraveler.findTotalTravelCost()
     displayTotalCost()
+    dropdownDestinationSelection()
 
   }
 
@@ -77,6 +85,42 @@ let randomTraveler;
   function displayTotalCost() {
     totalCost.innerText = randomTraveler.findTotalTravelCost()
   }
+
+ function dropdownDestinationSelection() {
+  let destinationName = destinationTrip.findDestinations(destinationTrip)
+  destinationName.forEach(destination => {
+    dropdownSelection.innerHTML += ` <option class="destinations" value="${destination}">${destination}`
+  })
+ }
+
+
+
+ function retrieveTripData(event) {
+  event.preventDefault(event)
+  let destination = dropdownSelection.value 
+  let destID = destinationTrip.data.find(dest => dest.destination === destination)
+  let findID = tripTrip.data.map(trip => trip.id)
+  let newID = findID.length + 1
+  console.log(destination)
+
+  const tripData = {
+    id: newID,
+    userID: randomTraveler.id,
+    destinationID: destID.id,
+    travelers: parseInt(numTravelers.value), 
+    date: dateInput.value,
+    duration: parseInt(durationAmt.value),
+    status: 'pending',
+    suggestedActivities: [] 
+  }
+  console.log(tripData)
+  // console.log(tripTrip.data.length,)
+ }
+
+
+
+
+
 
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********

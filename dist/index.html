@@ -8,62 +8,34 @@
 </head>
 
 <body>
-  <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
   <nav>
     <p class="header-title">Travel Tracker</p>
-    <!-- <img class="total-amt" src="./images/plane.svg" alt="airplane logo in mustard yellow"> -->
     <img class="plane-logo" src="./images/plane.svg" alt="airplane logo in mustard yellow">
     <p class="amt total-cost"></p>
-  
-    <!-- <img src="" class="logo" alt="small logo image"> -->
 </nav>
 <main>
   <header class="name"><span class="name">Welcome:</span></header>
   <section class="input-banner">
-    <section class="sleep-calendar-section card" id="sleepCalendarSection">
-      <label for="sleep-calendar" class="select-date">Select A Date: </label>
-      <input aria-label="Enter a date for individual data" class="date-input" id="dateInput" min="2019-06-15" max="2022-01-23" type="date" required>
-      <button aria-label="show sleep data for date button" class="show-data-btn" id="showSleepButton">Update User Data</button>
-      <button aria-label="reset" class="reset-data-btn" id="resetSleepButton">Reset Data</button>
+    <section class="input-section card" id="CalendarSection">
+      <label for="calendar" class="select-date">Select A Date: </label>
+      <input aria-label="Enter a date for trip start" class="date-input" id="dateInput" min="2022-09-23" max="" type="date">
       <p><span class="post-error-message" id="postErrorMessage"></span></p>
     </section>
     <label class="duration" aria-label="Select a duration for your trip" for="durationAmt">Select a Duration for your Trip:</label>
-    <input type="number" id="durationAmt" name="quantity" min="1" max="31" required>
+    <input type="number" id="durationAmt" name="quantity" min="1" max="31">
     <label class="num-travelers" aria-label="enter number of Travelers" for="numTravelers">Select Number of Travelers (1 - 10):</label>
-    <input type="number" id="numTravelers" name="quantity" min="1" max="10" required>
-    <button class="submit-data-btn" id="submitData">Submit Entries</button>
-    <section class="pick-data" id="pickDataType">
-      <label for="data-type-slection">Select Data Type:</label>
-      <select id="select1" name="data-type-selection" class="data-entry-type-selection" required>
-        <option class="sleep-data" value="sleep data">sleep data</option>
-        <option class="hydration-data" value="hydration data">hydration data</option>
-        <option class="activity-data" value="activity data">activity data</option>
+    <input type="number" class="number-input" id="numTravelers" name="quantity" min="1" max="10">
+    <section class="pick-location" id="pickLocationType">
+      <label for="data-location-slection">Select Data Type:</label>
+      <select id="dropdownSelection" name="data-type-selection" class="data-entry-type-selection" required>
+        <option class="destinations" value="destinations">Select</option>
       </select>
-      <button class="select-data-btn" id="selectDataType">Select data type</button>
+      <button class="select-data-btn" id="submitTrip">Submit Trip</button>
+      <p class="form-error"></p>
     </section>
   </section>
 <div class="articles">
-  <!-- <article class="article"> -->
-    <!-- <img class="destination-image" src="" alt="">
-    <p class="destination-name"></p>
-    <p class="past"></p>
-    <p class="pending"></p>
-    <p class="upcoming"></p> -->
-  <!-- </article> -->
 </article>
-    <!-- <article class="article">
-            <p class="my-trips">My Trips:</p>
-            <p class="past">Pending:</p>
-            <p class="upcoming">Upcoming:</p>
-            <p class="pending">Pending:</p> -->
-    <!-- </article> --> 
-    <!-- <article class="article">
-            <img src="./images/ocean.jpg" alt="A beach with slow rolling waves with a sunset background and sprinkle of highlighted clouds">
-            <p class="destination">Beautiful Destination Randomizer</p>
-            <p class="my-trip-display hidden">My Trip Display</p>
-            <p class="my-trips hidden">Estimated Cost of Trip:</p>
-            <p class="display-cost hidden">$$$</p>
-    </article> -->
 </div>
 </main>
 

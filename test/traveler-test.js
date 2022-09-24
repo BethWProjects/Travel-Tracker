@@ -2,7 +2,7 @@ import chai from "chai";
 const expect = chai.expect;
 import travelerData from "../src/data/travelerData.js";
 import Traveler from "../src/Traveler.js";
-import Session from "../src/Session.js";
+import Trip from "../src/Trip.js";
 
 describe("See if the tests are running", function () {
 //   let travelerData1;
@@ -28,11 +28,7 @@ describe("See if the tests are running", function () {
     expect(traveler2.travelerName()).to.equal('Rachael Vaughten')
   });
 
-  it.skip('should be abe to get traveler data', () => {
-    expect(traveler3.setTravelerData(travelerData, 'trips', 'userID')).to.equal()
-  });
-
-  it('should be able to get destination data', () => {
+  it.skip('should be able to get destination data', () => {
     expect(traveler3.setDestinationData(this.data).to.equal([{
         id: 1,
         userID: 44,
