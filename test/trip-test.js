@@ -54,11 +54,27 @@ describe("See if the tests are running", function () {
     expect(allTrips.getPendingTrips(38).length).to.equal(1)
   })
 
-  it.skip('should be able to access the destination id by trip destination Id', () => {
-    expect(allTrips.getDestinations(28).length).to.equal(4)
+  it('should be able to find this Years Trips by traveler ID', () => {
+   // console.log(allTrips.getThisYearsTrips(36))
+    expect(allTrips.getThisYearsTrips(44).length).to.equal(2)
+  })
+
+  it('should be able to return lodging and duration costs on trips for this year by traveler', () => {
+    //console.log('console', allDestinations.getLodgingandDurationCosts(44, '2022-09-25'))
+    expect(allDestinations.getLodgingAndDurationCosts(44, '2022-09-25')).to.equal(5480)
+  })
+
+  it('should be able to return flight and travler costs on trips for this year by traveler', () => {
+    expect(allDestinations.getFlightAndTravelerCosts(44, '2022-09-25')).to.equal(2790)
+  })
+
+  it('should be able to find the total travel costs this year for a traveler', () => {
+    console.log(allDestinations.findTotalTravelCostsThisYear(44, '2022-09-25'))
+    expect(allDestinations.findTotalTravelCostsThisYear(44, '2022-09-25')).to.equal('Total Yearly Cost: $9097.00')
   })
 
   it('should be able to access destination data by tripDestinationIDs', () => {
+    //console.log(allDestinations.getDestinationData(35))
     expect(allDestinations.getDestinationData(35)).to.deep.equal([
       {
         id: 25,
