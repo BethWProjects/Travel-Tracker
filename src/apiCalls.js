@@ -4,6 +4,7 @@ let fetchData = (dataFileName) =>
         if (!response.ok) {
             throw new Error('Not a 200 status');
         }
+        console.log('getting my data')
         return response.json()
     })   
     .then(`response => response.${dataFileName}Data`)

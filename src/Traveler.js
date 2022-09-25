@@ -1,9 +1,16 @@
 class Traveler {
-    constructor(travelerData) {
-this.id = travelerData.id,
-this.name = travelerData.name,
-this.travelerType = travelerData.travelerType
+    constructor(data) {
+this.id = data.id,
+this.name = data.name,
+this.travelerType = data.travelerType
 }
+
+travelerName() {
+    return this.name;
+}
+
+
+
 }
 
 export default Traveler

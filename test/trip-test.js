@@ -1,71 +1,21 @@
 import chai from "chai";
 const expect = chai.expect;
 import tripsData from "../src/data/tripsData.js";
-//import destinationData from "../src/data/destinationsData.js";
+import destinationData from "../src/data/destinationsData.js";
 import Trip from "../src/Trip.js";
 
 describe("See if the tests are running", function () {
-  let tripsData1;
   let trip1;
-//   let destinationData1;
+  let allTrips;
+  let tripDestinations;
+  let allDestinations;
 
   beforeEach(() => {
-    tripsData1 = [
-        {
-          id: 22,
-          userID: 22,
-          destinationID: 9,
-          travelers: 4,
-          date: '2022/05/01',
-          duration: 19,
-          status: 'approved',
-          suggestedActivities: []
-        },
-        {
-          id: 86,
-          userID: 22,
-          destinationID: 46,
-          travelers: 4,
-          date: '2020/10/31',
-          duration: 17,
-          status: 'approved',
-          suggestedActivities: []
-        },
-        {
-          id: 113,
-          userID: 22,
-          destinationID: 6,
-          travelers: 3,
-          date: '2019/08/14',
-          duration: 15,
-          status: 'approved',
-          suggestedActivities: []
-        },
-        {
-          id: 195,
-          userID: 22,
-          destinationID: 17,
-          travelers: 3,
-          date: '2019/09/12',
-          duration: 17,
-          status: 'approved',
-          suggestedActivities: []
-        }
-      ];
-      trip1 = new Trip(tripsData1);
-
-    //   destinationData1 = [
-    //     {
-    //         id: 6,
-    //         destination: "Jakarta, Indonesia",
-    //         estimatedLodgingCostPerDay: 70,
-    //         estimatedFlightCostPerPerson: 890,
-    //         image:
-    //           "https://images.unsplash.com/photo-1555333145-4acf190da336?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
-    //         alt: "lit up city at night",
-    //       }
-    //   ]
-      
+      trip1 = new Trip(tripsData[0]);
+      allTrips = new Trip(tripsData);
+      allDestinations = new Trip(tripsData, destinationData);
+     // tripDestinations = new Trip(tripsData, destinationData);
+    
   });
 
   it("should be a function", function () {
@@ -76,13 +26,83 @@ describe("See if the tests are running", function () {
     expect(trip1).to.be.an.instanceOf(Trip);
   });
 
-  it("should have a property to hold all traveler data", () => {
-    expect(trip1.tripsData).to.deep.equal(tripsData1)
+  it('should be able to find a trip by matching traveler id to trip userID', () => {
+    //this test is working on the getTrip function because we are passing in tripsData array above
+    expect(allTrips.getTrip(2).length).to.deep.equal(6)
+  })
+
+  it('should be able to filter and find upcoming trips for userID 1', () => {
+    expect(allTrips.getUpcomingTrips(24)).to.deep.equal([
+      {
+        id: 9,
+        userID: 24,
+        destinationID: 19,
+        travelers: 5,
+        date: '2022/12/19',
+        duration: 19,
+        status: 'approved',
+        suggestedActivities: []
+      }
+    ])
+  })
+
+  it('should be able to filter and find upcoming trips for userID 1', () => {
+    expect(allTrips.getPastTrips(44).length).to.deep.equal(9)
+  })
+
+  it('should be able to return pending trips for a user by their id', () => {
+    expect(allTrips.getPendingTrips(38).length).to.equal(1)
+  })
+
+  it('should be able to find this Years Trips by traveler ID', () => {
+   // console.log(allTrips.getThisYearsTrips(36))
+    expect(allTrips.getThisYearsTrips(44).length).to.equal(2)
+  })
+
+  it('should be able to return lodging and duration costs on trips for this year by traveler', () => {
+    //console.log('console', allDestinations.getLodgingandDurationCosts(44, '2022-09-25'))
+    expect(allDestinations.getLodgingAndDurationCosts(44, '2022-09-25')).to.equal(5480)
+  })
+
+  it('should be able to return flight and travler costs on trips for this year by traveler', () => {
+    expect(allDestinations.getFlightAndTravelerCosts(44, '2022-09-25')).to.equal(2790)
+  })
+
+  it('should be able to find the total travel costs this year for a traveler', () => {
+    console.log(allDestinations.findTotalTravelCostsThisYear(44, '2022-09-25'))
+    expect(allDestinations.findTotalTravelCostsThisYear(44, '2022-09-25')).to.equal('Total Yearly Cost: $9097.00')
+  })
+
+  it('should be able to access destination data by tripDestinationIDs', () => {
+    //console.log(allDestinations.getDestinationData(35))
+    expect(allDestinations.getDestinationData(35)).to.deep.equal([
+      {
+        id: 25,
+        destination: 'New York, New York',
+        estimatedLodgingCostPerDay: 175,
+        estimatedFlightCostPerPerson: 200,
+        image: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
+        alt: 'people crossing the street during the day surrounded by tall buildings and advertisements'
+      }
+    ])
+  })
+
+  it.skip("should have a property to hold all traveler data", () => {
+    expect(trip1.tripsData).to.deep.equal( {
+        id: 1,
+        userID: 44,
+        destinationID: 49,
+        travelers: 1,
+        date: "2022/09/16",
+        duration: 8,
+        status: "approved",
+        suggestedActivities: [],
+      });
   });
 
-  it("should be able to find all of a users trips by id", () => {
-   console.log('console', trip1.getAllTravelerTrips(22))
-    expect(trip1.getAllTravelerTrips(22)).to.deep.equal(tripsData1)
+  it.skip('should be able to find all of the users destinations by id', () => {
+    console.log(tripDestinations.getUserDestination(21))
+    expect(tripDestinations.getUserDestination(21)).to.equal(4);
   });
 
 });

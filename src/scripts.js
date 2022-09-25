@@ -1,20 +1,57 @@
 import { fetchData } from './apiCalls';
+import Trip from './Trip.js';
+import Traveler from './Traveler.js'
 
-let traveler;
-let trip;
-let destination;
+//querySelectors
+let name = document.querySelector('.name');
+let pastTrips = document.querySelector('.pastTrips')
+let articleCards = document.querySelector('.articles')
+let totalCost = document.querySelector('.total-cost')
+let dropdownSelection = document.querySelector('#dropdownSelection')
+let tripButton = document.querySelector('#submitTrip')
+
+
+let randomTraveler;
 
 function getData() {
-    Promise.all([fetchData("travelers"),fetchData("trips"),fetchData("destinations"),])
-    .then((value) => {
-      console.log(value)
-      traveler = value[0].travelers;
-      trip = value[1].trips;
-      destination = value[2].destinations;
-      //session = new Session(bookingsData, roomsData, customersData);
-    });
+  Promise.all([fetchData("travelers"),fetchData("trips"),fetchData("destinations"),])
+  .then((value) => {
+    console.log(value)
+    traveler = value[0].travelers;
+    trip = value[1].trips;
+    destination = value[2].destinations;
+    //session = new Session(bookingsData, roomsData, customersData);
+    displayName();
+  });
+}
+console.log(getData())
+
+  //eventListeners
+ 
+  
+  function displayData() {
+    displayName();
   }
-  console.log(getData())
+
+  function displayName() {
+    name.innerText = `${randomTraveler.travelerName()}`;
+  }
+  
+  
+
+  
+
+ 
+
+
+
+ 
+
+
+
+
+
+
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
 
