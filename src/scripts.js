@@ -1,42 +1,95 @@
-import { fetchData } from './apiCalls';
+
+import { fetchData } from './apiCalls'
 import Trip from './Trip.js';
 import Traveler from './Traveler.js'
 
+
 //querySelectors
 let name = document.querySelector('.name');
-let pastTrips = document.querySelector('.pastTrips')
+// let pastTrips = document.querySelector('.pastTrips')
 let articleCards = document.querySelector('.articles')
 let totalCost = document.querySelector('.total-cost')
-let dropdownSelection = document.querySelector('#dropdownSelection')
-let tripButton = document.querySelector('#submitTrip')
+// let dropdownSelection = document.querySelector('#dropdownSelection')
+// let tripButton = document.querySelector('#submitTrip')
 
-
-let randomTraveler;
+let travelers;
+let trips;
+let destination;
+let trip;
+let singleTraveler;
+let currentDate;
 
 function getData() {
   Promise.all([fetchData("travelers"),fetchData("trips"),fetchData("destinations"),])
   .then((value) => {
     console.log(value)
-    traveler = value[0].travelers;
-    trip = value[1].trips;
+    travelers = value[0].travelers;
+    trips = value[1].trips;
     destination = value[2].destinations;
-    //session = new Session(bookingsData, roomsData, customersData);
-    displayName();
+    trip = new Trip(trips, destination)
+    singleTraveler = new Traveler(travelers[43]);
+    currentDate = new Date().toJSON().slice(0, 10);
+    console.log('newTrip', trip)
+  
+    welcomeUser()
+   
   });
 }
-console.log(getData())
 
-  //eventListeners
+window.addEventListener('load', getData);
+
+
+const welcomeUser = () => {
+  console.log('singleTraveler', singleTraveler)
  
+  displayName()
+  displayTotalCost()
+  displayDestinationTripCards()
+  displayCards()
   
-  function displayData() {
-    displayName();
-  }
+};
 
   function displayName() {
-    name.innerText = `${randomTraveler.travelerName()}`;
+    name.innerText = `Welcome! \u00a0 ${singleTraveler.travelerName()}`;
+  }
+
+  function displayTotalCost() {
+    totalCost.innerText = `${trip.findTotalTravelCostsThisYear(singleTraveler.id, currentDate)}`
   }
   
+   
+  function displayPastTrips() {
+    // let trip = ""
+    let getCardInfo = trip.getPastTrips(singleTraveler.id).forEach(trip => {
+      const travelerDestination = trip.destinations.find(destination => trip.destinationID === destination.id)
+    
+      console.log('getCards', getCardInfo)
+    return getCardInfo
+  })
+}
+ 
+
+ function displayDestinationTripCards() {
+  articleCards.innerHTML += ` <article class="article">
+  <p class="destination-name">${singleTraveler.travelerName().split(' ').splice(0, 1)}'s Past Trips</p>
+  <p class="date">${trip.getPastTrips(singleTraveler.id, currentDate)}</p>
+  <p class="past"></p>
+</article>
+<article class="article">
+  <p class="destination-name">${singleTraveler.travelerName().split(' ').splice(0, 1)}'s Pending Trips</p>
+  <p class="date">${trip.getPendingTrips(singleTraveler.id, currentDate)}</p>
+  <p class="past"></p>
+</article>
+<article class="article">
+  <p class="destination-name">${singleTraveler.travelerName().split(' ').splice(0, 1)}'s Upcoming Trips</p>
+  <p class="date">${trip.getUpcomingTrips(singleTraveler.id, currentDate)}</p>
+  <p class="past"></p>
+</article>
+`
+
+
+}
+
   
 
   
@@ -63,6 +116,7 @@ import './css/styles.css';
 import './images/turing-logo.png'
 import './images/ocean.jpg'
 import './images/plane.svg'
+import destinationData from './data/destinationsData';
 
 
 console.log('This is the JavaScript entry file - your code begins here.');

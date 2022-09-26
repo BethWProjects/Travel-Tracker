@@ -7,43 +7,64 @@ class Trip {
 
   getTrip = (travelerId) => this.tripsData.filter((trip) => trip.userID === travelerId);
 
-
-  getUpcomingTrips = (travelerId) => {
-    let todaysDate = new Date().toISOString().slice(0, 10).split('-').join('/')
-    let trips = this.getTrip(travelerId)
-    const upcomingTrips = trips.filter(trip => trip.date > todaysDate)
-    return upcomingTrips
-  }
-
-  getPastTrips = (travelerId) => {
-    let todaysDate = new Date().toISOString().slice(0, 10).split('-').join('/')
-    let trips = this.getTrip(travelerId)
-    const pastTrips = trips.filter(trip => trip.date < todaysDate)
-    return pastTrips
-  }
-
-  getPendingTrips = (travelerId) => {
-    let trips = this.getTrip(travelerId)
-    const pendingTrips = trips.filter(trip => trip.status === 'pending')
-    return pendingTrips
-  }
-
-  getThisYearsTrips = (travelerId) => {
-    //add to README to find better way to hanlde dates, instead of hardcoding
-    let trips = this.getTrip(travelerId)
-    const thisYearTrips = trips.filter(trip => trip.date > '2021/12/31')
-    return thisYearTrips
-  }
-
   getDestinationData = (travelerId) => {
-    let trips = this.getTrip(travelerId)
-    let tripDestinationIDs = trips.map((trip) => trip.destinationID);
-      return this.destinationsData.reduce((acc, destination) => {
-        if (tripDestinationIDs.includes(destination.id)) {
-          acc.push(destination);
+    let allTrips = this.getTrip(travelerId);
+    let allDestinations = allTrips.reduce((acc, trip) => {
+      this.destinationsData.forEach((destination) => {
+      if (destination.id === trip.destinationID) {
+      acc.push(destination);
+      }
+      });
+      return acc;
+    }, []);
+    return allDestinations;
+  };
+
+ 
+  getPastTrips = (travelerId, currentDate) => {
+    let trips = this.getTrip(travelerId);
+    let year = currentDate.split('-')[0];
+    let allDestinations = this.getDestinationData(travelerId);
+    let getDates = trips.reduce((acc, trip) => {
+      allDestinations.forEach((destination) => {
+        if (trip.date.split('/').join('') < year.split("-").join('') && destination.id === trip.destinationID) {
+          acc.push(`<br> ${trip.date}: ${destination.destination}`)
         }
-        return acc
-      }, []);
+      })
+      return acc
+    }, [])
+      return getDates.length < 1 ? `No past trips` : getDates;
+  }
+
+
+  getUpcomingTrips = (travelerId, currentDate) => {
+    let trips = this.getTrip(travelerId);
+    let year = currentDate.split('-')[0];
+    let allDestinations = this.getDestinationData(travelerId);
+    let getDates = trips.reduce((acc, trip) => {
+      allDestinations.forEach((destination) => {
+        if (trip.date.split('/').join('') >= year.split("-").join('') && destination.id === trip.destinationID) {
+          acc.push(`<br> ${trip.date}: ${destination.destination}`)
+        }
+      })
+      return acc
+    }, [])
+      return getDates.length < 1 ? `No upcoming trips` : getDates;
+  }
+ 
+  getPendingTrips = (travelerId, currentDate) => {
+    let trips = this.getTrip(travelerId);
+    let year = currentDate.split('-')[0];
+    let allDestinations = this.getDestinationData(travelerId);
+    let getDates = trips.reduce((acc, trip) => {
+      allDestinations.forEach((destination) => {
+        if (trip.status === 'pending' && destination.id === trip.destinationID) {
+          acc.push(`<br> ${trip.date}: ${destination.destination}`)
+        }
+      })
+      return acc
+    }, [])
+      return getDates.length < 1 ? `No pending trips` : getDates;
   }
 
 
@@ -81,30 +102,8 @@ class Trip {
     let total = flightCosts + lodgingCosts
     return `Total Yearly Cost: $${total.toFixed(2)}`
   }
-  
+
 }
-
-  //   getAllTravelerData(travelerId, id) {
-  //   return this.data.filter((allData) => allData[id] === travelerId);
-  // }
-
-  // findTravelerDestinations(destinations) {
-  //   const tripDestinationIDs = destinations.map((trip) => trip.destinationID);
-  //   console.log('destinations', destinations)
-
-  //   return this.data.reduce((acc, destination) => {
-  //     if (tripDestinationIDs.includes(destination.id)) {
-  //       acc.push(destination);
-  //     }
-  //     return acc;
-  //   }, []);
-  // }
-
-  // findDestinations(destinationRepo) {
-  //   return destinationRepo.data
-  //   .map(destination => destination.destination)
-  //   .sort()
-  // }
 
 
 
