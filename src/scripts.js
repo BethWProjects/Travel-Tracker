@@ -6,15 +6,19 @@ import Traveler from './Traveler.js'
 
 //querySelectors
 let name = document.querySelector('.name');
-// let pastTrips = document.querySelector('.pastTrips')
-let articleCards = document.querySelector('.articles')
-let totalCost = document.querySelector('.total-cost')
-// let dropdownSelection = document.querySelector('#dropdownSelection')
-// let tripButton = document.querySelector('#submitTrip')
+// let pastTrips = document.querySelector('.pastTrips');
+let articleCards = document.querySelector('.articles');
+let totalCost = document.querySelector('.total-cost');
+let dateInput = document.querySelector('#dateInput');
+let durationAmt = document.querySelector('#durationAmount');
+let numTravelers = document.querySelector('#numTravelers');
+let dropdownSelection = document.querySelector('.data-entry-type-selection');
+let inputSection = document.querySelector('input-section')
+let tripButton = document.querySelector('#submitTrip');
 
 let travelers;
 let trips;
-let destination;
+let destination1;
 let trip;
 let singleTraveler;
 let currentDate;
@@ -25,19 +29,40 @@ function getData() {
     console.log(value)
     travelers = value[0].travelers;
     trips = value[1].trips;
-    destination = value[2].destinations;
-    trip = new Trip(trips, destination)
+    destination1 = value[2].destinations;
+    trip = new Trip(trips, destination1)
     singleTraveler = new Traveler(travelers[43]);
     currentDate = new Date().toJSON().slice(0, 10);
     console.log('newTrip', trip)
   
     welcomeUser()
-   
+    showDestinationDropdownSelections()
   });
 }
 
 window.addEventListener('load', getData);
 
+function handleButtons(event) {
+  switch (event.target.className) {
+    case "select-data-btn":
+      
+      break;
+    case "":
+    
+      break;
+    case "":
+    
+      break;
+    case "":
+  
+      break;
+      case "":
+
+          break;
+    default:
+      break;
+  }
+};
 
 const welcomeUser = () => {
   console.log('singleTraveler', singleTraveler)
@@ -45,7 +70,7 @@ const welcomeUser = () => {
   displayName()
   displayTotalCost()
   displayDestinationTripCards()
-  displayCards()
+ 
   
 };
 
@@ -58,17 +83,6 @@ const welcomeUser = () => {
   }
   
    
-  function displayPastTrips() {
-    // let trip = ""
-    let getCardInfo = trip.getPastTrips(singleTraveler.id).forEach(trip => {
-      const travelerDestination = trip.destinations.find(destination => trip.destinationID === destination.id)
-    
-      console.log('getCards', getCardInfo)
-    return getCardInfo
-  })
-}
- 
-
  function displayDestinationTripCards() {
   articleCards.innerHTML += ` <article class="article">
   <p class="destination-name">${singleTraveler.travelerName().split(' ').splice(0, 1)}'s Past Trips</p>
@@ -87,6 +101,15 @@ const welcomeUser = () => {
 </article>
 `
 
+}
+
+function showDestinationDropdownSelections() {
+let dropdownIteration = destination1.map(dest => `<option>${dest.destination}</option>`)
+console.log(dropdownIteration)
+  dropdownSelection.innerHTML = ` <label for="data-location-slection">Select Data Type:</label>
+<select id="dropdownSelection" name="data-type-selection" class="data-entry-type-selection" required>
+${dropdownIteration.sort()}
+</select> ` 
 
 }
 
@@ -116,7 +139,6 @@ import './css/styles.css';
 import './images/turing-logo.png'
 import './images/ocean.jpg'
 import './images/plane.svg'
-import destinationData from './data/destinationsData';
 
 
 console.log('This is the JavaScript entry file - your code begins here.');
