@@ -28,5 +28,7 @@ describe("See if the tests are running", function () {
     expect(traveler2.travelerName()).to.equal('Rachael Vaughten')
   });
 
-  
+  // it('should be able to find a trip and destination by traveler', () => {
+  //   expect(traveler1.travelersTrips()).to.equal()
+  // })
 });
