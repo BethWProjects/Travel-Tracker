@@ -13,27 +13,47 @@
     <img class="plane-logo" src="./images/plane.svg" alt="airplane logo in mustard yellow">
     <p class="amt total-cost"></p>
 </nav>
-<main>
+<main class="main-section">
   <header class="name"><span class="name"></span></header>
-  <section class="input-banner">
-    <section class="input-section card" id="CalendarSection">
+  <div class="input-banner">
+    <section class="form-input">
+
+    <section class="calendar-section" id="CalendarSection">
       <label for="calendar" class="select-date">Select A Date: </label>
-      <input aria-label="Enter a date for trip start" class="date-input" id="dateInput" min="2022-09-23" max="" type="date">
+      <input aria-label="Enter a date for trip start" class="date-input" id="dateInput" min="2022-09-26" max="" type="date">
       <p><span class="post-error-message" id="postErrorMessage"></span></p>
     </section>
+
+    <section class="duration-section">
     <label class="duration" aria-label="Select a duration for your trip" for="durationAmt">Select a Duration for your Trip:</label>
-    <input type="number" id="durationAmt" name="quantity" min="1" max="31">
-    <label class="num-travelers" aria-label="enter number of Travelers" for="numTravelers">Select Number of Travelers (1 - 10):</label>
-    <input type="number" class="number-input" id="numTravelers" name="quantity" min="1" max="10">
+    <input type="number" class="duration-amount" id="durationAmt" name="quantity" min="1" max="31">
+    </section>
+    <section class="number-travelers-section">
+    <label class="num-travelers" aria-label="enter number of Travelers" for="numTravelers">Select Number of Travelers (1 - 20):</label>
+    <input type="number" class="number-input" id="numTravelers" name="quantity" min="1" max="20">
+    </section>
+
     <section class="pick-location" id="pickLocationType">
       <label  for="data-location-slection">Select Data Type:</label>
       <select id="dropdownSelection" name="data-type-selection" class="data-entry-type-selection" required>
-        <!-- placeholder for <option></option> -->
-      </select>
+    </select>
+    <!-- placeholer for DOM option selection -->
     </section>
     <button class="select-data-btn" id="submitTrip">Submit Trip</button>
     <p class="form-error"></p>
-  </section>
+
+     </section>
+
+    <article class="estimate">
+      <p class="estimate-display"></p>
+    </article>
+
+    <!-- <section class="potential-trip-wrapper">
+      <p class="potential-trip-display hidden"></p>
+    </section> -->
+
+  </div>
+ 
 <div class="articles">
   <!-- DOM innerHTML will add articles for traveler here -->
 </article>

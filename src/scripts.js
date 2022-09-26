@@ -10,11 +10,13 @@ let name = document.querySelector('.name');
 let articleCards = document.querySelector('.articles');
 let totalCost = document.querySelector('.total-cost');
 let dateInput = document.querySelector('#dateInput');
-let durationAmt = document.querySelector('#durationAmount');
+let durationAmt = document.querySelector('.duration-amount');
 let numTravelers = document.querySelector('#numTravelers');
 let dropdownSelection = document.querySelector('.data-entry-type-selection');
 let inputSection = document.querySelector('input-section')
 let tripButton = document.querySelector('#submitTrip');
+let mainSection = document.querySelector('.main-section')
+let tripEstimate = document.querySelector('.estimate-display')
 
 let travelers;
 let trips;
@@ -37,28 +39,30 @@ function getData() {
   
     welcomeUser()
     showDestinationDropdownSelections()
+   
   });
 }
 
 window.addEventListener('load', getData);
+mainSection.addEventListener('click', handleButtons)
 
 function handleButtons(event) {
   switch (event.target.className) {
     case "select-data-btn":
-      
+      showEstimatedTripCost()
       break;
-    case "":
+    // case "":
     
-      break;
-    case "":
+    //   break;
+    // case "":
     
-      break;
-    case "":
+    //   break;
+    // case "":
   
-      break;
-      case "":
+    //   break;
+    //   case "":
 
-          break;
+    //       break;
     default:
       break;
   }
@@ -113,8 +117,51 @@ ${dropdownIteration.sort()}
 
 }
 
-  
+function showEstimatedTripCost() {
+  tripEstimate.innerHTML = ''
+  tripEstimate.innerHTML += `
+  <p>Estimated Total Cost for Trip:</p>
+  <p>$${trip.findEstimatedTotalCost(durationAmt.value, numTravelers.value, dropdownSelection.value)}</p>
+  <p>Trip Date: ${dateInput.value}</p>
+  <p>${trip.findTripName(dropdownSelection.value)}</p>
+  <img src="${trip.findTripImage(dropdownSelection.value)}" alt="">
+  `
+}  
 
+
+// const postBooking = (event) => {
+
+//       let date = '2022/01/23'
+      
+//       fetch("http://localhost:3001/api/v1/trips", {
+//           method: "POST",
+//           headers: { "Content-Type": "application/json" },
+//           body: JSON.stringify({
+//             userID: singleUser.id,
+//             date: date,
+//             numSteps: steps.value,
+//             minutesActive: minutes.value,
+//             flightsOfStairs: stairs.value
+//           }),
+//       })
+//       .then((response) => {
+//           if (!response.ok) {
+//             throw new Error(
+//               "There was an error adding your Activity Data, please retry later"
+//             );
+//           } else {
+//             return response.json();
+//           }
+//         })
+//         .then(() => {
+//           getFetch()
+//           .then(() => displayActivityInfo()) 
+//         })
+//         .catch((err) => {
+//           postErrorMessage.innerText = 'Error updating data, please retry later'
+//         });
+//   }
+// }
   
 
  

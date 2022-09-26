@@ -33,9 +33,19 @@ nav {
 
 .input-banner {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
-  margin-left: 20px;
+  justify-content: space-around;
+  height: 300px;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.estimate {
+ width: 350px;
 }
 
 .amt {
@@ -131,10 +141,10 @@ button:hover, input:hover, select:hover {
   font-weight: bold;
 }
 
-/*
+
 img {
   width: 100%;
-  height: 260px;
+  height: 200px;
   object-fit: cover;
   margin: 0 0 10px 0; 
   margin: 0;
@@ -143,7 +153,7 @@ img {
   flex-wrap: wrap;
   align-items: flex-start;
 } 
-*/
+
 
 p { 
   margin: 0 0 5px 10px;

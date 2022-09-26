@@ -44,7 +44,7 @@ class Trip {
     let getDates = trips.reduce((acc, trip) => {
       allDestinations.forEach((destination) => {
         if (trip.date.split('/').join('') >= year.split("-").join('') && destination.id === trip.destinationID) {
-          acc.push(`<br> ${trip.date}: ${destination.destination}`)
+          acc.push(`<br> ${trip.date}: ${destination.destination} `)
         }
       })
       return acc
@@ -103,8 +103,18 @@ class Trip {
     return `Total Yearly Cost: $${total.toFixed(2)}`
   }
 
+  findEstimatedTotalCost(duration, numTravelers, location) {
+    let estimatedTotal = this.destinationsData.find(dest => dest.destination === location)
+    console.log('estimatedTotal', estimatedTotal)
+    let total = ((estimatedTotal.estimatedLodgingCostPerDay * duration) + (estimatedTotal.estimatedFlightCostPerPerson * numTravelers)) * 1.1;
+    console.log('total', total)
+    return total.toFixed(2)
 }
+  findTripImage = (destination) => this.destinationsData.find((dest) => dest.destination === destination).image
 
+   findTripName = (destination) => this.destinationsData.find((dest) => dest.destination === destination).destination
+
+}
 
 
 export default Trip;

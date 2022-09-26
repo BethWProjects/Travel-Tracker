@@ -82,6 +82,18 @@ describe("See if the tests are running", function () {
       });
   });
 
+  it('should be able to find an estimated total for a new trip', () => {
+    expect(allDestinations.findEstimatedTotalCost(10, 2, "Anchorage, Alaska")).to.equal(2420)
+  })
+
+  it('should be able to find a trip name', () => {
+    expect(allDestinations.findTripName("Anchorage, Alaska")).to.equal("Anchorage, Alaska")
+  })
  
+  it('shoud be able to find a trip image per destination', () => {
+    console.log(allDestinations.findTripName("Anchorage, Alaska"))
+    expect(allDestinations.findTripImage("Anchorage, Alaska")).to.equal(
+      'https://images.unsplash.com/photo-1539545547102-90ae2c140089?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80')
+  })
 
 });
