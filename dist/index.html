@@ -19,7 +19,7 @@
     <section class="form-input">
 
     <section class="calendar-section" id="CalendarSection">
-      <label for="calendar" class="select-date">Select A Date: </label>
+      <label for="calendar" class="select-date">Find Your Trip: </label>
       <input aria-label="Enter a date for trip start" class="date-input" id="dateInput" min="2022-09-26" max="" type="date">
       <p><span class="post-error-message" id="postErrorMessage"></span></p>
     </section>
@@ -34,12 +34,13 @@
     </section>
 
     <section class="pick-location" id="pickLocationType">
-      <label  for="data-location-slection">Select Data Type:</label>
+      <label  for="data-location-slection">Select Destination:</label>
       <select id="dropdownSelection" name="data-type-selection" class="data-entry-type-selection" required>
     </select>
     <!-- placeholer for DOM option selection -->
     </section>
-    <button class="select-data-btn" id="submitTrip">Submit Trip</button>
+    <button class="find-estimate-btn" id="submitTrip">Find Estimate</button>
+    <button class="submit-booking-btn" id="submitTrip">Book Trip</button>
     <p class="form-error"></p>
 
      </section>
