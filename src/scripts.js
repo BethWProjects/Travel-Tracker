@@ -48,8 +48,6 @@ function getData(id) {
   });
 }
 
-// window.addEventListener('load', loginDisplay); 
-
 
 mainSection.addEventListener('click', handleButtons)
 loginSection.addEventListener('click', handleButtons)
@@ -70,15 +68,13 @@ function handleButtons(event) {
   }
 };
 
-// function loginDisplay() {
-//   loginSection.addClassList.remove("hidden");
-// }
 
 function showMainSection() {
   mainSection.classList.remove("hidden")
   navSection.classList.remove("hidden")
   loginSection.classList.add("hidden");
 }
+
 
 function verifyLogin(event) {
   let userID = parseInt(username.value.slice(8));
