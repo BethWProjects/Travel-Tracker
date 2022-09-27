@@ -3,8 +3,7 @@
 ## Abstract
 Would you like to track and book your trips in an app you can personalize? Use this repo to help you do just that! This was a solo project assigned by the [Turing School of Software and Design](https://turing.edu/). This was a travel tracking application which utilized a variety of technologies, including javaScript, HTML, CSS, Mocha, and Chai. At the end of this solo project I will have completed 50% of the Turing curriculum, primarily focusing on vanilla JS to this point. The project was completed in just under a week. The project goals were to: implement ES6 classes that communicate to each other as needed, use object and array prototype methods to perform data manipulation, create a dashboard that is easy to use and displays information in a clear way, write modular, reusable code that follows SRP, implement a robust testing suite using TDD, make network requests to retrieve data, create a user login, and ensure that our app follows best practices for accessability. 
 
-![Travel Tracker preview]()
-
+![Travel Tracker preview](https://media.giphy.com/media/8f4yNc0ZQDzM4vbtTS/giphy.gif)
 
 ## Setup
 - Clone this repository to your local machine

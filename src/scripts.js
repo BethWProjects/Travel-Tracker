@@ -22,6 +22,7 @@ let loginError = document.querySelector(".error-message-login")
 let loginSection = document.querySelector(".log-in-container")
 let mainSection = document.querySelector('.main-section')
 let navSection = document.querySelector(".all-nav")
+let formError = document.querySelector(".form-error")
 
 //global variables
 let travelers;
@@ -34,8 +35,6 @@ let currentDate;
 function getData(id) {
   Promise.all([fetchSingleTraveler(id),fetchData("trips"),fetchData("destinations"),])
   .then((value) => {
-  //  console.log(value)
-    //travelers = value[0];
     trips = value[1].trips;
     destination1 = value[2].destinations;
     trip = new Trip(trips, destination1)
@@ -47,7 +46,6 @@ function getData(id) {
    
   });
 }
-
 
 mainSection.addEventListener('click', handleButtons)
 loginSection.addEventListener('click', handleButtons)
@@ -94,7 +92,6 @@ function verifyLogin(event) {
 }
 
 const welcomeUser = () => {
- // console.log('singleTraveler', singleTraveler)
   displayName()
   displayTotalCost()
   displayDestinationTripCards()
@@ -140,7 +137,7 @@ ${dropdownIteration.sort()}
 
 }
 
-function showEstimatedTripCost() {
+const showEstimatedTripCost = () => {
   tripEstimate.innerHTML = ''
   tripEstimate.innerHTML = `
   <p>Estimated Total Cost for Trip:</p>
@@ -164,9 +161,9 @@ const postBooking = (event) => {
               id: tripID,
               userID: singleTraveler.id,
               destinationID: destID,
-              travelers: numTravelers.value,
+              travelers: parseInt(numTravelers.value),
               date: newDate,
-              duration: durationAmt.value,
+              duration: parseInt(durationAmt.value),
               status: "pending",
               suggestedActivities: [ ]
           }),
@@ -174,41 +171,34 @@ const postBooking = (event) => {
       .then((response) => {
           if (!response.ok) {
             throw new Error(
-              "There was an error adding your Activity Data, please retry later"
+              "There was an error adding your Trip Data, please retry later"
             );
           } else {
             return response.json();
+            
           }
         })
         .then((data) => {
-          // fetchData("trips")
-          // .then(data => console.log(data))
           articleCards.innerHTML = ''
           trip.tripsData = [...trip.tripsData, data.newTrip]
           displayTotalCost()
           displayDestinationTripCards()
         })
         .catch((err) => {
-          postErrorMessage.innerText = 'Error updating data, please retry later'
+          postErrorMessage.innerText = 'Error updating data, please update fields or retry later'
         });
   }
 
-  
-
  
 
-
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
+// import css
 
 import './css/styles.css';
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
+// import images
 import './images/turing-logo.png'
 import './images/ocean.jpg'
 import './images/plane.svg'
 
 
-console.log('This is the JavaScript entry file - your code begins here.');
+

@@ -108,6 +108,12 @@ header.name {
   margin-top: 10px;
 }
 
+.username, .password {
+  color: rgb(245, 238, 238);
+  margin-right: 10px;
+  font-size: 20px;
+}
+
 .articles {
   display: flex;
   flex-wrap: wrap;
@@ -157,13 +163,18 @@ input {
   margin-top: 5px;
 }
 
-input:valid {
+.post-error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+/* input:valid {
   border: 2px solid rgb(136, 223, 136);
 }
 
 input:invalid {
   border: 2px solid rgb(235, 18, 18);
-}
+} */
 
 button:hover, input:hover, select:hover {
   cursor: pointer;
@@ -225,7 +236,7 @@ p {
       transition: ease all .15s;
   }
 
-  /* .input-banner {
+  .input-banner {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -233,7 +244,16 @@ p {
     height: 300px;
     margin-top: 150px;
     margin-bottom: 50px;
-  } */
+  }
+
+  .estimate-display {
+    margin-top: 25px;
+    margin-bottom: 150px;
+  }
+
+  .form-input {
+    margin-top: 100px;
+  }
   
 
   li {
