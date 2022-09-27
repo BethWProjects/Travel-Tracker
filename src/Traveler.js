@@ -11,13 +11,13 @@ travelerName() {
     return this.name;
 }
 
-travelersTrips(trips, dest) {
-    let trip = new Trip(trips, dest)
-    console.log('trip', trip)
-    this.id = trips.tripsData.destinationID === dest.destinationsData.id
+// travelersTrips(trips, dest) {
+//     let trip = new Trip(trips, dest)
+//     console.log('trip', trip)
+//     this.id = trips.tripsData.destinationID === dest.destinationsData.id
    
-   return trip
-}
+//    return trip
+// }
 
 
 }

@@ -1,21 +1,29 @@
 
-import { fetchData } from './apiCalls'
+import { fetchData, fetchSingleTraveler } from './apiCalls'
 import Trip from './Trip.js';
 import Traveler from './Traveler.js'
 
 
 //querySelectors
 let name = document.querySelector('.name');
-// let pastTrips = document.querySelector('.pastTrips');
 let articleCards = document.querySelector('.articles');
 let totalCost = document.querySelector('.total-cost');
 let dateInput = document.querySelector('#dateInput');
-let durationAmt = document.querySelector('#durationAmount');
+let durationAmt = document.querySelector('.duration-amount');
 let numTravelers = document.querySelector('#numTravelers');
 let dropdownSelection = document.querySelector('.data-entry-type-selection');
 let inputSection = document.querySelector('input-section')
 let tripButton = document.querySelector('#submitTrip');
+let tripEstimate = document.querySelector('.estimate-display')
+let cardParagraph = document.querySelector('.date')
+let username = document.querySelector("#userName")
+let password = document.querySelector("#password")
+let loginError = document.querySelector(".error-message-login")
+let loginSection = document.querySelector(".log-in-container")
+let mainSection = document.querySelector('.main-section')
+let navSection = document.querySelector(".all-nav")
 
+//global variables
 let travelers;
 let trips;
 let destination1;
@@ -23,50 +31,80 @@ let trip;
 let singleTraveler;
 let currentDate;
 
-function getData() {
-  Promise.all([fetchData("travelers"),fetchData("trips"),fetchData("destinations"),])
+function getData(id) {
+  Promise.all([fetchSingleTraveler(id),fetchData("trips"),fetchData("destinations"),])
   .then((value) => {
-    console.log(value)
-    travelers = value[0].travelers;
+  //  console.log(value)
+    //travelers = value[0];
     trips = value[1].trips;
     destination1 = value[2].destinations;
     trip = new Trip(trips, destination1)
-    singleTraveler = new Traveler(travelers[43]);
+    singleTraveler = new Traveler(value[0]);
     currentDate = new Date().toJSON().slice(0, 10);
-    console.log('newTrip', trip)
-  
+
     welcomeUser()
     showDestinationDropdownSelections()
+   
   });
 }
 
-window.addEventListener('load', getData);
+// window.addEventListener('load', loginDisplay); 
+
+
+mainSection.addEventListener('click', handleButtons)
+loginSection.addEventListener('click', handleButtons)
 
 function handleButtons(event) {
   switch (event.target.className) {
-    case "select-data-btn":
-      
+    case "find-estimate-btn":
+      showEstimatedTripCost()
       break;
-    case "":
-    
+    case "submit-booking-btn":
+      postBooking()
       break;
-    case "":
-    
+    case "submit-login":
+      verifyLogin()
+      showMainSection()
       break;
-    case "":
+    // case "":
   
-      break;
-      case "":
+    //   break;
+    //   case "":
 
-          break;
+    //       break;
     default:
       break;
   }
 };
 
+// function loginDisplay() {
+//   loginSection.addClassList.remove("hidden");
+// }
+
+function showMainSection() {
+  mainSection.classList.remove("hidden")
+  navSection.classList.remove("hidden")
+  loginSection.classList.add("hidden");
+}
+
+function verifyLogin(event) {
+  let userID = parseInt(username.value.slice(8));
+  if (username.value === "" || password.value === "") {
+    loginError.innerText = `PLEASE SUBMIT BOTH USERNAME AND PASSWORD!`;
+  } else if (password.value !== "travel") {
+    loginError.innerText = `INCORRECT PASSWORD!`;
+  } else if (!username.value.includes("traveler")) {
+    loginError.innerText = `USERNAME DOES NOT EXIST! PLEASE TRY AGAIN.`;
+  } else if (userID > 50) {
+    loginError.innerText = "THE USER DOES NOT EXIST!";
+  } else {
+    loginError.innerText = '';
+    getData(userID);
+  }
+}
+
 const welcomeUser = () => {
-  console.log('singleTraveler', singleTraveler)
- 
+ // console.log('singleTraveler', singleTraveler)
   displayName()
   displayTotalCost()
   displayDestinationTripCards()
@@ -84,6 +122,7 @@ const welcomeUser = () => {
   
    
  function displayDestinationTripCards() {
+  articleCards.innerHTML = ''
   articleCards.innerHTML += ` <article class="article">
   <p class="destination-name">${singleTraveler.travelerName().split(' ').splice(0, 1)}'s Past Trips</p>
   <p class="date">${trip.getPastTrips(singleTraveler.id, currentDate)}</p>
@@ -105,7 +144,6 @@ const welcomeUser = () => {
 
 function showDestinationDropdownSelections() {
 let dropdownIteration = destination1.map(dest => `<option>${dest.destination}</option>`)
-console.log(dropdownIteration)
   dropdownSelection.innerHTML = ` <label for="data-location-slection">Select Data Type:</label>
 <select id="dropdownSelection" name="data-type-selection" class="data-entry-type-selection" required>
 ${dropdownIteration.sort()}
@@ -113,19 +151,62 @@ ${dropdownIteration.sort()}
 
 }
 
-  
+function showEstimatedTripCost() {
+  tripEstimate.innerHTML = ''
+  tripEstimate.innerHTML = `
+  <p>Estimated Total Cost for Trip:</p>
+  <p>$${trip.findEstimatedTotalCost(durationAmt.value, numTravelers.value, dropdownSelection.value)}</p>
+  <p>Trip Date: ${dateInput.value}</p>
+  <p>${trip.findTripName(dropdownSelection.value)}</p>
+  <img src="${trip.findTripImage(dropdownSelection.value)}" alt="">
+  `
+}  
+
+
+const postBooking = (event) => {
+  let tripID = trip.findTripsLength()
+  let destID = trip.destinationsData.find(dest => dest.destination === dropdownSelection.value).id;
+  let newDate = dateInput.value.split("-").join("/");
+      
+      fetch("http://localhost:3001/api/v1/trips", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+              id: tripID,
+              userID: singleTraveler.id,
+              destinationID: destID,
+              travelers: numTravelers.value,
+              date: newDate,
+              duration: durationAmt.value,
+              status: "pending",
+              suggestedActivities: [ ]
+          }),
+      })
+      .then((response) => {
+          if (!response.ok) {
+            throw new Error(
+              "There was an error adding your Activity Data, please retry later"
+            );
+          } else {
+            return response.json();
+          }
+        })
+        .then((data) => {
+          // fetchData("trips")
+          // .then(data => console.log(data))
+          articleCards.innerHTML = ''
+          trip.tripsData = [...trip.tripsData, data.newTrip]
+          displayTotalCost()
+          displayDestinationTripCards()
+        })
+        .catch((err) => {
+          postErrorMessage.innerText = 'Error updating data, please retry later'
+        });
+  }
 
   
 
  
-
-
-
- 
-
-
-
-
 
 
 // This is the JavaScript entry file - your code begins here

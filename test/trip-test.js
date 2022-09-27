@@ -30,10 +30,7 @@ describe("See if the tests are running", function () {
   })
 
   it('should be able to filter and find upcoming trips for userID 1', () => {
-    expect(allDestinations.getUpcomingTrips(44, '2022-09-25')).to.deep.equal([
-      '<br> 2022/09/16: Castries, St Lucia',
-      '<br> 2022/08/08: Manila, Philippines'
-    ])
+    expect(allDestinations.getUpcomingTrips(44, '2022-09-25').length).to.deep.equal(2)
   })
 
   it('should be able to find past trips', () => {
@@ -41,6 +38,7 @@ describe("See if the tests are running", function () {
   })
 
   it('should be able to return pending trips for a user by their id', () => {
+    console.log(allDestinations.getPendingTrips(44, '2022/09/25'))
     expect(allDestinations.getPendingTrips(44, '2022/09/25')).to.equal('No pending trips')
   })
 
@@ -82,6 +80,22 @@ describe("See if the tests are running", function () {
       });
   });
 
- 
+  it('should be able to find an estimated total for a new trip', () => {
+    expect(allDestinations.findEstimatedTotalCost(10, 2, "Anchorage, Alaska")).to.equal('2420.00')
+  })
 
+  it('should be able to find a trip name', () => {
+    expect(allDestinations.findTripName("Anchorage, Alaska")).to.equal("Anchorage, Alaska")
+  })
+ 
+  it('shoud be able to find a trip image per destination', () => {
+    console.log(allDestinations.findTripName("Anchorage, Alaska"))
+    expect(allDestinations.findTripImage("Anchorage, Alaska")).to.equal(
+      'https://images.unsplash.com/photo-1539545547102-90ae2c140089?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80')
+  })
+
+  it('should be able to find the length of trips by trip id and add 1', () => {
+    allTrips.findTripsLength()
+    expect(allTrips.findTripsLength()).to.equal(204)
+  })
 });

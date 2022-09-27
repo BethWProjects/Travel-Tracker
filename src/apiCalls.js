@@ -10,4 +10,16 @@ let fetchData = (dataFileName) =>
     .then(`response => response.${dataFileName}Data`)
     .catch(err => alert('there was an error in providing you the information'))
 
-export { fetchData } 
+let fetchSingleTraveler = (id) => 
+fetch(`http://localhost:3001/api/v1/travelers/${id}`)
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Not a 200 status');
+    }
+    console.log('getting my data')
+    return response.json()
+})   
+.catch(err => alert('there was an error in providing you the information'))
+
+
+export { fetchData, fetchSingleTraveler} 

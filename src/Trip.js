@@ -2,6 +2,7 @@ class Trip {
   constructor(tripsData, destinationsData) {
     this.tripsData = tripsData,
     this.destinationsData = destinationsData
+    
   }
 
 
@@ -40,11 +41,10 @@ class Trip {
   getUpcomingTrips = (travelerId, currentDate) => {
     let trips = this.getTrip(travelerId);
     let year = currentDate.split('-')[0];
-    let allDestinations = this.getDestinationData(travelerId);
     let getDates = trips.reduce((acc, trip) => {
-      allDestinations.forEach((destination) => {
+      this.destinationsData.forEach((destination) => {
         if (trip.date.split('/').join('') >= year.split("-").join('') && destination.id === trip.destinationID) {
-          acc.push(`<br> ${trip.date}: ${destination.destination}`)
+          acc.push(`<br> ${trip.date}: ${destination.destination} `)
         }
       })
       return acc
@@ -52,12 +52,13 @@ class Trip {
       return getDates.length < 1 ? `No upcoming trips` : getDates;
   }
  
+
+
   getPendingTrips = (travelerId, currentDate) => {
     let trips = this.getTrip(travelerId);
     let year = currentDate.split('-')[0];
-    let allDestinations = this.getDestinationData(travelerId);
     let getDates = trips.reduce((acc, trip) => {
-      allDestinations.forEach((destination) => {
+      this.destinationsData.forEach((destination) => {
         if (trip.status === 'pending' && destination.id === trip.destinationID) {
           acc.push(`<br> ${trip.date}: ${destination.destination}`)
         }
@@ -103,8 +104,18 @@ class Trip {
     return `Total Yearly Cost: $${total.toFixed(2)}`
   }
 
+  findEstimatedTotalCost(duration, numTravelers, location) {
+    let estimatedTotal = this.destinationsData.find(dest => dest.destination === location)
+    let total = ((estimatedTotal.estimatedLodgingCostPerDay * duration) + (estimatedTotal.estimatedFlightCostPerPerson * numTravelers)) * 1.1;
+    return total.toFixed(2)
 }
+   findTripImage = (destination) => this.destinationsData.find((dest) => dest.destination === destination).image
 
+   findTripName = (destination) => this.destinationsData.find((dest) => dest.destination === destination).destination
+
+   findTripsLength = () => this.tripsData.map(trip => trip.id).length + 1
+
+}
 
 
 export default Trip;
