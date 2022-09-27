@@ -7,13 +7,36 @@
   <title>Travel Tracker</title>
 </head>
 
-<body>
-  <nav>
+<body>  
+
+  <div class="log-in-container">
+    <p>
+      <section class="log-in-section">
+        <h2>Please login</h2>
+        <div class="input-field">
+          <label for="userName">Username</label>
+          <input id="userName" type="text" placeholder="Enter Username" name="userName" max="10" required>
+        </div>
+        <div class="input-field">
+          <label for="password">Password</label>
+          <input id="password" type="text" placeholder="Enter Password" name="password" max="6" required>
+          <button class="submit-login" type="submit-login">Login</button>
+        </div>
+        <div>
+        <span class="error-message-login"></span>
+        </div>
+      </section>
+    </p>
+
+  </div>
+
+  <nav class="all-nav hidden">
     <p class="header-title">Travel Tracker</p>
     <img class="plane-logo" src="./images/plane.svg" alt="airplane logo in mustard yellow">
     <p class="amt total-cost"></p>
 </nav>
-<main class="main-section">
+
+<main class="main-section hidden">
   <header class="name"><span class="name"></span></header>
   <div class="input-banner">
     <section class="form-input">

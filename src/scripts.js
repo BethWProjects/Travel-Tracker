@@ -14,9 +14,14 @@ let numTravelers = document.querySelector('#numTravelers');
 let dropdownSelection = document.querySelector('.data-entry-type-selection');
 let inputSection = document.querySelector('input-section')
 let tripButton = document.querySelector('#submitTrip');
-let mainSection = document.querySelector('.main-section')
 let tripEstimate = document.querySelector('.estimate-display')
 let cardParagraph = document.querySelector('.date')
+let username = document.querySelector("#userName")
+let password = document.querySelector("#password")
+let loginError = document.querySelector(".error-message-login")
+let loginSection = document.querySelector(".log-in-container")
+let mainSection = document.querySelector('.main-section')
+let navSection = document.querySelector(".all-nav")
 
 //global variables
 let travelers;
@@ -43,12 +48,11 @@ function getData(id) {
   });
 }
 
-window.addEventListener('load', () => {
-  getData(44)
-}); 
+// window.addEventListener('load', loginDisplay); 
 
 
 mainSection.addEventListener('click', handleButtons)
+loginSection.addEventListener('click', handleButtons)
 
 function handleButtons(event) {
   switch (event.target.className) {
@@ -58,9 +62,10 @@ function handleButtons(event) {
     case "submit-booking-btn":
       postBooking()
       break;
-    // case "":
-    
-    //   break;
+    case "submit-login":
+      verifyLogin()
+      showMainSection()
+      break;
     // case "":
   
     //   break;
@@ -72,9 +77,34 @@ function handleButtons(event) {
   }
 };
 
+// function loginDisplay() {
+//   loginSection.addClassList.remove("hidden");
+// }
+
+function showMainSection() {
+  mainSection.classList.remove("hidden")
+  navSection.classList.remove("hidden")
+  loginSection.classList.add("hidden");
+}
+
+function verifyLogin(event) {
+  let userID = parseInt(username.value.slice(8));
+  if (username.value === "" || password.value === "") {
+    loginError.innerText = `PLEASE SUBMIT BOTH USERNAME AND PASSWORD!`;
+  } else if (password.value !== "travel") {
+    loginError.innerText = `INCORRECT PASSWORD!`;
+  } else if (!username.value.includes("traveler")) {
+    loginError.innerText = `USERNAME DOES NOT EXIST! PLEASE TRY AGAIN.`;
+  } else if (userID > 50) {
+    loginError.innerText = "THE USER DOES NOT EXIST!";
+  } else {
+    loginError.innerText = '';
+    getData(userID);
+  }
+}
+
 const welcomeUser = () => {
  // console.log('singleTraveler', singleTraveler)
- 
   displayName()
   displayTotalCost()
   displayDestinationTripCards()
