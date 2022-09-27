@@ -2,10 +2,8 @@ import chai from "chai";
 const expect = chai.expect;
 import travelerData from "../src/data/travelerData.js";
 import Traveler from "../src/Traveler.js";
-import Trip from "../src/Trip.js";
 
 describe("See if the tests are running", function () {
-//   let travelerData1;
   let traveler1;
   let traveler2;
   let traveler3;
@@ -24,11 +22,21 @@ describe("See if the tests are running", function () {
     expect(traveler1).to.be.an.instanceOf(Traveler);
   });
 
+  it('should be able to store an id', () => {
+    expect(traveler2.id).to.equal(2)
+  })
+
+  it('should be able to store a name', () => {
+    expect(traveler2.name).to.equal('Rachael Vaughten')
+  })
+
+  it('should be able to store a name', () => {
+    expect(traveler2.travelerType).to.equal('thrill-seeker')
+  })
+
   it("should be able to return a traveler name", () => {
     expect(traveler2.travelerName()).to.equal('Rachael Vaughten')
   });
 
-  // it('should be able to find a trip and destination by traveler', () => {
-  //   expect(traveler1.travelersTrips()).to.equal()
-  // })
+
 });
