@@ -15,11 +15,11 @@
         <h2 class="welcome-message">Welcome to Traveler Tracker</h2>
         <h3 class="login-message">Please login</h3>
         <div class="input-field">
-          <label for="userName">Username</label>
+          <label class="username" for="userName">Username</label>
           <input id="userName" type="text" placeholder="Enter Username" name="userName" max="10" required>
         </div>
         <div class="input-field">
-          <label for="password">Password</label>
+          <label class="password" for="password">Password</label>
           <input id="password" type="text" placeholder="Enter Password" name="password" max="6" required>
           <button class="submit-login" type="submit-login">Login</button>
         </div>
@@ -44,19 +44,19 @@
 
     <section class="calendar-section" id="CalendarSection">
       <label for="calendar" class="select-date">Find Your Trip: </label>
-      <input aria-label="Enter a date for trip start" class="date-input" id="dateInput" min="2022-09-26" max="" type="date">
+      <input aria-label="Enter a date for trip start" class="date-input" id="dateInput" min="2022-09-26" max="" type="date" required>
       <p><span class="post-error-message" id="postErrorMessage"></span></p>
     </section>
 
     <section class="duration-section">
     <label class="duration" aria-label="Select a duration for your trip" for="durationAmt">Select a Duration for your Trip:</label>
-    <input type="number" class="duration-amount" id="durationAmt" name="quantity" min="1" max="31">
+    <input type="number" class="duration-amount" id="durationAmt" name="quantity" min="1" max="31" required>
     </section>
     <section class="number-travelers-section">
     <label class="num-travelers" aria-label="enter number of Travelers" for="numTravelers">Select Number of Travelers (1 - 20):</label>
-    <input type="number" class="number-input" id="numTravelers" name="quantity" min="1" max="20">
+    <input type="number" class="number-input" id="numTravelers" name="quantity" min="1" max="20" required>
     </section>
-
+    
     <section class="pick-location" id="pickLocationType">
       <label  for="data-location-slection">Select Destination:</label>
       <select id="dropdownSelection" name="data-type-selection" class="data-entry-type-selection" required>
