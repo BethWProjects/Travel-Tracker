@@ -1,7 +1,5 @@
 body {
-  /* background: radial-gradient(circle, rgb(245, 246, 239) 0%, rgb(243, 244, 238) 100%); */
   background-color: rgb(243, 247, 247);
-  /* background-color: #e5f1f1; */
 }
 html, body, .flex-container {
   height: 100%;
@@ -132,6 +130,7 @@ header.name {
   position: relative;
   flex-wrap: nowrap;
   align-items: center;
+  overflow-y: auto;
 }
 
 .destination-name {
@@ -168,13 +167,13 @@ input {
   margin-top: 10px;
 }
 
-/* input:valid {
+input:valid {
   border: 2px solid rgb(136, 223, 136);
 }
 
 input:invalid {
   border: 2px solid rgb(235, 18, 18);
-} */
+}
 
 button:hover, input:hover, select:hover {
   cursor: pointer;
@@ -282,6 +281,7 @@ p {
       justify-content: space-evenly;
       box-shadow: 0 0 10px grey;
       position: relative;
+      overflow-y: auto;
   }
 
   .articles {

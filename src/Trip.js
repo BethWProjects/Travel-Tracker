@@ -5,7 +5,6 @@ class Trip {
     
   }
 
-
   getTrip = (travelerId) => this.tripsData.filter((trip) => trip.userID === travelerId);
 
   getDestinationData = (travelerId) => {
@@ -21,7 +20,6 @@ class Trip {
     return allDestinations;
   };
 
- 
   getPastTrips = (travelerId, currentDate) => {
     let trips = this.getTrip(travelerId);
     let year = currentDate.split('-')[0];
@@ -37,7 +35,6 @@ class Trip {
       return getDates.length < 1 ? `No past trips` : getDates;
   }
 
-
   getUpcomingTrips = (travelerId, currentDate) => {
     let trips = this.getTrip(travelerId);
     let year = currentDate.split('-')[0];
@@ -52,7 +49,6 @@ class Trip {
       return getDates.length < 1 ? `No upcoming trips` : getDates;
   }
  
-
 
   getPendingTrips = (travelerId, currentDate) => {
     let trips = this.getTrip(travelerId);

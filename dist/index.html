@@ -8,7 +8,6 @@
 </head>
 
 <body>  
-
   <div class="log-in-container">
     <p>
       <section class="log-in-section">
@@ -28,26 +27,21 @@
         </div>
       </section>
     </p>
-
   </div>
-
-  <nav class="all-nav hidden">
+<nav class="all-nav hidden">
     <p class="header-title">Travel Tracker</p>
     <img class="plane-logo" src="./images/plane.svg" alt="airplane logo in mustard yellow">
     <p class="amt total-cost"></p>
 </nav>
-
 <main class="main-section hidden">
   <header class="name"><span class="name"></span></header>
   <div class="input-banner">
     <section class="form-input">
-
     <section class="calendar-section" id="CalendarSection">
       <label for="calendar" class="select-date">Find Your Trip: </label>
       <input aria-label="Enter a date for trip start" class="date-input" id="dateInput" min="2022-09-26" max="" type="date" required>
       <p><span class="post-error-message" id="postErrorMessage"></span></p>
     </section>
-
     <section class="duration-section">
     <label class="duration" aria-label="Select a duration for your trip" for="durationAmt">Select a Duration for your Trip:</label>
     <input type="number" class="duration-amount" id="durationAmt" name="quantity" min="1" max="31" required>
@@ -56,7 +50,6 @@
     <label class="num-travelers" aria-label="enter number of Travelers" for="numTravelers">Select Number of Travelers (1 - 20):</label>
     <input type="number" class="number-input" id="numTravelers" name="quantity" min="1" max="20" required>
     </section>
-    
     <section class="pick-location" id="pickLocationType">
       <label  for="data-location-slection">Select Destination:</label>
       <select id="dropdownSelection" name="data-type-selection" class="data-entry-type-selection" required>
@@ -66,15 +59,11 @@
     <button class="find-estimate-btn" id="submitTrip">Find Estimate</button>
     <button class="submit-booking-btn" id="submitTrip">Book Trip</button>
     <p class="form-error"></p>
-
      </section>
-
     <article class="estimate">
       <p class="estimate-display"></p>
     </article>
-
   </div>
- 
 <div class="articles">
   <!-- DOM innerHTML will add articles for traveler here -->
 </article>
