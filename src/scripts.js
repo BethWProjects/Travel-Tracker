@@ -64,14 +64,7 @@ function handleButtons(event) {
       break;
     case "submit-login":
       verifyLogin()
-      showMainSection()
       break;
-    // case "":
-  
-    //   break;
-    //   case "":
-
-    //       break;
     default:
       break;
   }
@@ -100,6 +93,7 @@ function verifyLogin(event) {
   } else {
     loginError.innerText = '';
     getData(userID);
+    showMainSection()
   }
 }
 
@@ -109,7 +103,6 @@ const welcomeUser = () => {
   displayTotalCost()
   displayDestinationTripCards()
  
-  
 };
 
   function displayName() {
